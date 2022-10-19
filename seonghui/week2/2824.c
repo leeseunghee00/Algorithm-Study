@@ -3,7 +3,7 @@
 long long nm1(long long n, long long m)
 {
     long long re = 1;
-    for (int i = 1; i <= n || i <= m; i++)
+    for (int i = 1; i <= n && i <= m; i++)
     {
         if (n % i == 0 && m % i == 0)
             re = i;
