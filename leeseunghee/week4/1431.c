@@ -2,51 +2,51 @@
 #include <stdlib.h>
 #include <string.h>
 
-int sum(char *s){
+int sum(char* s) {
 	int result = 0;
 
-	for(int i=0; i<strlen(s); i++){
-		if(s[i] >= '0' && s[i] <= '9')
+	for (int i = 0; i < strlen(s); i++) {
+		if (s[i] >= '0' && s[i] <= '9')
 			result += s[i] - '0';
 	}
 
 	return result;
 }
 
-int compare(const void *first, const void *second){
-	char *a = *(char **)first;
-	char *b = *(char **)second;
+int compare(const void* first, const void* second) {
+	char* a = *(char**)first;
+	char* b = *(char**)second;
 
-	if(strlen(a) != strlen(b)){
+	if (strlen(a) != strlen(b)) {
 		return strlen(a) > strlen(b);
 	}
-	else{
+	else {
 		int asum = sum(a);
 		int bsum = sum(b);
 
-		if(asum != bsum)
+		if (asum != bsum)
 			return asum > bsum;
 		else
-			return a > b;
+			return strcmp(a, b);
 	}
 }
 
-int main(){
+int main() {
 	int n;
-	char **str;
-	
+	char** str;
+
 	scanf("%d", &n);
 
-	str = (char **)malloc(sizeof(char *) * n);
+	str = (char**)malloc(sizeof(char*) * n);
 
-	for(int i=0; i<n; i++){
-		str[i] = (char *)malloc(sizeof(char) * 50);
+	for (int i = 0; i < n; i++) {
+		str[i] = (char*)malloc(sizeof(char) * 50);
 		scanf("%s", str[i]);
 	}
 
 	qsort((void*)str, n, sizeof(str[0]), compare);
 
-	for(int i=0; i<n; i++){
+	for (int i = 0; i < n; i++) {
 		printf("%s\n", str[i]);
 	}
 }
